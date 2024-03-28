@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "sprint1-django"
+version = "0.1.0"
+description = ""
+authors = ["Andrey Ivanov <yndx-ivandrey@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Django = "^5.0.3"
+django-debug-toolbar = "^4.3.0"
+python-dotenv = "^1.0.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.3.0"
+isort = "^5.13.2"
+mypy = "^1.9.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

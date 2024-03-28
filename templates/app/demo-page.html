@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load demo_tags %}
+{% block title %}Context processor / template tags{% endblock %}
+{% block h1 %}Context processor / template tags{% endblock %}
+{% block content %}
+    <h3>Context processor usage</h3>
+    <p>current time: {{ time }}</p>
+    <p>source ip: {{ source_ip }}</p>
+    <h3>Использование template tags</h3>
+    <p>Актуальная дата: 12 {{ 10 | month_str }} (10)</p>
+    <p>Актуальная дата: 12 {{ None | month_str | title }} (None)</p>
+    <p>Актуальная дата: 12 {{ 16 | month_str | upper }} (16)</p>
+    <p>{{ "new hash-tag and another hash-tag" | replace_with_hash:"hash" }}</p>
+    <p>{{ 123 | replace_with_hash:"hash" }}</p>
+    <p>user agent: {% user_agent %}</p>
+{% endblock %}
