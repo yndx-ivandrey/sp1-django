@@ -3,6 +3,6 @@ __pycache__
 */.mypy_cache/**
 **/.env
 *.log
-media/**
+media/*/**
 static/**
 *.sqlite3
