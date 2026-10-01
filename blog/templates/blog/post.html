@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block header %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<section>
+    <div>
+        <div>
+            {% include 'blog/include/_author_profile.html' with author=author posts_amount=posts_amount follow=follow %}
+        </div>
+
+        {% include 'blog/include/_post.html' with post=post %}
+    </div>
+    <div><h5>Комментарии:</h5></div>
+    {% include 'blog/comments.html' with comments=comments form=form %}
+</section>
+{% endblock %}

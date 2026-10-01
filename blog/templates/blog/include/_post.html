@@ -1,0 +1,24 @@
+{% load date_filters %}
+{% load thumbnail %}
+{% load pluralize %}
+<article>
+    <div>
+        <p><small>{{ post.published_at|datetime_ru_long }}</small></p>
+        <hr>
+        {% thumbnail post.image "800x600" crop="center" upscale=True as im %}
+        <img class="card-img" src="{{ im.url }}" alt="">
+        {% endthumbnail %}
+        <p>
+            {{ post.text|safe }}
+        </p>
+        <div>
+            <div>
+                {% if post.comments.exists %}
+                <p>{{ post.comments.count }}
+                    {{ post.comments.count | pluralize_ru:'комментарий,комментария,комментариев'}}</p>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</article>

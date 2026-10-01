@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+{% load i18n %}
+
+{% block title %}Последние обновления на сайте{% endblock %}
+{% block header %}Последние обновления на сайте{% endblock %}
+{% block content %}
+<div class="container">
+    {% block menu_all_follow %}
+    {% include 'blog/include/menu.html' with index=True %}
+    {% endblock %}
+
+    {% for post in page_obj %}
+    {% include 'blog/include/_post_card.html' with post=post %}
+    {% if not forloop.last %}
+    <hr>
+    {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_other_pages %}
+    {% include 'blog/paginator.html' with items=page_obj paginator=paginator %}
+    {% endif %}
+
+</div>
+
+{% endblock %}

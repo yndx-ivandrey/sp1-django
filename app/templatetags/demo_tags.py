@@ -1,6 +1,7 @@
 from typing import Any
 
 from django import template
+from django.template import Context
 from django.template.defaultfilters import stringfilter
 
 register = template.Library()
@@ -39,5 +40,7 @@ def replace_with_hash(value: str, substring: str) -> str:
 
 
 @register.simple_tag(takes_context=True)
-def user_agent(context) -> str:
-    return context.request.META["HTTP_USER_AGENT"]
+def user_agent(context: Context) -> str:
+    if request := context.get("request"):
+        return request.META["HTTP_USER_AGENT"] if hasattr(request, "META") else ""
+    return ""

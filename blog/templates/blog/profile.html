@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% block title %}Записи автора {{ author.get_full_name }}{% endblock %}
+{% block header %}{% endblock %}
+{% block content %}
+
+<section>
+    <div>
+        <div>
+            {% include 'blog/include/_author_profile.html' with author=author posts_amount=posts_amount follow=follow %}
+        </div>
+        <div>
+
+            {% for post in page %}
+            {% include 'blog/include/_post_card.html' with post=post %}
+            <hr>
+            {% endfor %}
+
+            {% if page.has_other_pages %}
+            {% include 'blog/paginator.html' with items=page paginator=paginator %}
+            {% endif %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

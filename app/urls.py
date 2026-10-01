@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import path, reverse_lazy
 from django.views.generic import RedirectView, TemplateView
 
-from app.views import DemoPageView, auth_page_view, page_view, error_view
+from app.views import DemoPageView, auth_page_view, error_view, page_view
 
 urlpatterns = [
     # заменить на app/page.html и проверить настройки TEMPLATES - DIRS

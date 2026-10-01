@@ -1,0 +1,16 @@
+{% if form.errors %}
+<section>
+    {% for field in form %}
+    {% for error in field.errors %}
+    <div>
+        <strong>{{ field.label }}: {{ error|escape }}</strong>
+    </div>
+    {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+    <div>
+        <strong>{{ error|escape }}</strong>
+    </div>
+    {% endfor %}
+</section>
+{% endif %}

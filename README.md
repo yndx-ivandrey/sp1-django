@@ -1,17 +1,22 @@
 # Демо для вебинара по Django
 
-Ожидаем python 3.12.x
-
+Ожидаем наличие uv и python 3.14.x
+Запуск (linux / macOS):
+```bash
+make init
+make run
 ```
-python -m venv venv
-source ./venv/bin/activate
-pip install poetry
-poetry install --no-root
-python manage.py runserver
+В windows:
+```commandline
+uv sync --frozen
+uv run python manage.py migrate
+uv run python manage.py createsuperuser --username admin --email 'admin@test.test'
+uv run python manage.py generate_blog_data
+uv run python manage.py runserver
 ```
-Доступ в /admin/ -   логин admin / пароль admin
+Доступ в /admin/ -   логин admin / пароль admin (или заданный при создании супер-пользователя)
 
-### Игры с поиском шаблона для страницы /app/page/
+### Приоритеты шаблонов при конфликте между приложениями - страница /app/page/
 1. в setting.py указать `"DIRS": [],`
 2. включить приложение app1 в settings.py
 3. заменить url в app/urls.py на `app/page.html`
@@ -30,13 +35,10 @@ python manage.py runserver
 
 /accounts/password_reset/  - "встроенная" форма для восстановления пароля
 
-### Игры со страницами ошибок:
+### Страницы ошибок:
 1. установить `DEBUG = False` в settings.py
 2. переименовать templates/400_.html в templates/400.html и templates/500_.html в templates/500.html
 3. раскомментировать в sp1_demo/urls.py handler404/handler500
 4. раскомментировать в app/views.py Exception в server_error_value_view
 
-### flatpages:
-/pages/page1/ - обычная страница
-/pages/super/ - закрыта авторизацией
-
+### /blog - мини-приложение для ведения блога

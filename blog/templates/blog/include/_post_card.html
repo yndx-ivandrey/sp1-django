@@ -1,0 +1,35 @@
+{% load date_filters %}
+{% load thumbnail %}
+{% load pluralize %}
+<div>
+    <div>
+        <p>
+            <a href="{% url 'profile' username=post.author.username %}">
+                <strong>@{{ post.author.username }}</strong>
+            </a>
+        </p>
+        <h5><a href="{% url 'post' post.author.username post.id %}">{{ post.title }}</a></h5>
+        <p><small>{{ post.published_at|datetime_ru_long }}</small></p>
+        {% thumbnail post.image "400x300" crop="center" upscale=True as im %}
+        <img class="card-img" src="{{ im.url }}" alt="">
+        {% endthumbnail %}
+        <p>
+            {{ post.text|safe|truncatewords_html:25 }}
+        </p>
+        <div>
+            <div>
+                {% if post.comments.exists %}
+                <a href="{% url 'post' post.author.username post.id %}" role="button">
+                    {{ post.comments.count }}
+                    {{ post.comments.count | pluralize_ru:'комментарий,комментария,комментариев'}}
+                </a>
+                {% endif %}
+
+                {% if post.author == request.user %}
+                <a href="{% url 'post' username=post.author.username post_id=post.id %}"
+                   role="button">Редактировать</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

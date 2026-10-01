@@ -1,10 +1,12 @@
+from typing import Any
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
 
-def not_found_view(request: HttpRequest, exception=None) -> HttpResponse:
+def not_found_view(request: HttpRequest, exception: Any = None) -> HttpResponse:
     return render(
         request,
         "404.html",
@@ -14,7 +16,7 @@ def not_found_view(request: HttpRequest, exception=None) -> HttpResponse:
 
 
 def server_error_value_view(request: HttpRequest) -> HttpResponse:
-    # raise Exception("Ha-Ha-Ha!")
+    # raise RuntimeError("Ha-Ha-Ha!")
     return render(None, "500.html", status=500)
 
 
@@ -32,4 +34,4 @@ def page_view(request: HttpRequest) -> HttpResponse:
 
 
 def error_view(request: HttpRequest) -> HttpResponse:
-    raise Exception("Unexpected server failure!")
+    raise RuntimeError("Unexpected server failure!")

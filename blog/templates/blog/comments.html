@@ -1,0 +1,26 @@
+{% if user.is_authenticated %}
+<article>
+    {% include 'blog/include/_form_errors.html' with form=form %}
+    <form method="post">
+        {% csrf_token %}
+        <h3 class="card-header">Добавить комментарий:</h3>
+        <div>
+            {{ form.text }}
+        </div>
+        <div class="grid">
+          <button type="submit">Отправить</button>
+            <button type="submit" class="secondary">Отмена</button>
+        </div>
+    </form>
+</article>
+{% endif %}
+
+{% for item in comments %}
+<article>
+    <header>
+        <a href="{% url 'profile' item.author.username %}"><strong>{{ item.author.username }}</strong></a>
+        <p><small>{{ item.created_at }}</small></p>
+    </header>
+    <p>{{ item.text }}</p>
+</article>
+{% endfor %}

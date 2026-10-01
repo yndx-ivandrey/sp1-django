@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,8 +11,12 @@
 <header class="container">
     <nav aria-label="Основная навигация">
         <ul>
+            <li><a href="{% url 'blog_index' %}"><strong>Все записи</strong></a></li>
+        </ul>
+        <ul>
+            <li><a href="{% url 'new_post' %}">Новый пост</a></li>
             {% if user.is_authenticated %}
-            <li>Пользователь: {{ user.username }}</li>
+            <li>{{ user.username }}</li>
             <li>
                 <form action="{% url 'logout' %}" method="POST">{% csrf_token %}
                     <button type="submit" class="outline"
@@ -31,14 +35,14 @@
 </header>
 
 <main class="container">
-    <h1>{% block h1 %}Header placeholder{% endblock %}</h1>
+    <h1>{% block header %}Header placeholder{% endblock %}</h1>
     {% block content %}
     {% endblock %}
 </main>
 
 <footer class="container">
     <small>
-        Текущее время: {{ time }}</small>
+        Кэширование и внедрение в контекст: {{ time }}</small>
     <hr/>
     {% block footer %}
     {% endblock %}
